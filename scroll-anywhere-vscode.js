@@ -92,7 +92,7 @@
     if (!dragging && Math.hypot(dx, dy) < CONFIG.dragThreshold) return;
     dragging = true;
 
-    // Velocity, though it wants the fine-grained sub-frame trail when available which is preferred for high-Hz mice for ye old' gamers sake. The coarse event is still useful as a fallback
+    // Velocity, though it wants the fine-grained sub-frame trail when available which is preferred for high-Hz mice for ye old' gamers sake. Coarse event is only used as a fallback
     const fine = CONFIG.useCoalesced && e.getCoalescedEvents ? e.getCoalescedEvents() : null;
     if (fine && fine.length) {
       for (const ce of fine) recordSample(ce.screenX, ce.screenY, ce.timeStamp);
@@ -138,7 +138,7 @@
     const vy = dragVY * CONFIG.flickMultiplier;
     const speed = Math.hypot(vx, vy);
 
-    const duration = speed * CONFIG.momentumMultiplier; // ms; shared by both axes
+    const duration = speed * CONFIG.momentumMultiplier; // ms; shared by both x & y axes
     const ax = vx / duration;
     const ay = vy / duration;
     const start = performance.now();
