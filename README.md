@@ -24,8 +24,10 @@ flowchart LR
     subgraph ThisRepo["This Repo"]
         A["scroll-anywhere-vscode.js"]
     end
+    subgraph Extension["VSCode Marketplace Extension"]
       B["Custom CSS and JS Loader<br>Extension"]
-      C["VSCode"]
+    end
+      C["VSCode Application"]
     A --> B
     B --> C
 ```
@@ -44,7 +46,8 @@ This has consequences you should understand before installing:
    <br>In VSCode, open Extensions and install
    *Custom CSS and JS Loader* (`be5invis.vscode-custom-css`)
 
-2. **Save the scroll-anywhere-vscode.js script from this repo in your VSCode extensions folder**
+2. **Save the scroll-anywhere-vscode.js script from this repo somewhere in your VSCode extensions folder**
+   <br>Some good locations are...
    - macOS / Linux: `~/.vscode/scroll-anywhere-vscode.js`
    - Windows: `C:\Users\<you>\.vscode\extensions\scroll-anywhere-vscode.js`
 
@@ -70,28 +73,28 @@ This has consequences you should understand before installing:
 
 ## Recommended VSCode settings
 
-To improve the feel of using this addon, set these two settings in `settings.json`:
+To improve the feel of using this addon, modify these two settings in `settings.json`:
 
 ```jsonc
-"editor.smoothScrolling": false,             // Keep this set to false, since it interferes with mouse momentum settings
-"editor.mouseWheelScrollSensitivity": 1      // Keep this set to 1, since the scroll-anywhere-vscode.js file has better ways to modify this
+"editor.smoothScrolling": false,             // We keep this set to false, since it interferes with the addon's mouse momentum settings
+"editor.mouseWheelScrollSensitivity": 1      // Keep this set to 1, since our scroll-anywhere-vscode.js file has more granular ways to modify these values
 ```
 
 ## Configuration
 
-All options live in the `CONFIG` block at the top of the script
-<br>To edit them, make a change in the `scroll-anywhere-vscode.js` file, save, then run <br>**Command Palette `Ctrl + Shift + P` → Reload Custom CSS and JS → Restart Visual Studio Code** to apply
+All options to modify this addon live in the `CONFIG` block at the top of the script
+<br>To edit them, open and modify the `scroll-anywhere-vscode.js` file, then save and run <br>**Command Palette `Ctrl + Shift + P` → Reload Custom CSS and JS → Restart Visual Studio Code** to apply
 
 | Option | Default | What it does |
 | --- | --- | --- |
 | `dragButton` | `1` | Mouse button to drag with: `0` left, `1` middle, `2` right |
 | `dragMultiplier` | `1.5` | Drag speed. Higher number scrolls faster than the hand moves |
-| `flickMultiplier` | `1.5` | Scales **momentum/flick** speed only, independent of the active drag speed |
-| `dragThreshold` | `3` | Pixels of movement before a press counts as a drag vs. a click (Do not adjust this unless you have a super high DPI monitor) |
-| `momentumMultiplier` | `900` | Glide length: ms of coast per unit of flick speed. Higher = longer coast |
-| `minMomentumSpeed` | `0.02` | px/ms. Flicks slower than this just stop with no momentum coast |
-| `flickWindowMs` | `50` | Time window used to measure release velocity. Shorter = snappier and more responsive to a late flick; longer = steadier |
-| `useCoalesced` | `true` | Use high-frequency sub-frame pointer samples (`getCoalescedEvents`) for a cleaner velocity estimate on high-Hz mice. Set `false` if it misbehaves.|
+| `flickMultiplier` | `1.5` | Scales **momentum/flick** speed only, independent of the mouse dragging speed |
+| `dragThreshold` | `3` | Pixels of movement before a press counts as a drag vs. a click (There's probably no need to adjust this unless you have a super high DPI monitor) |
+| `momentumMultiplier` | `900` | Glide length: ms of coast per unit of flick speed. Higher number = longer coast |
+| `minMomentumSpeed` | `0.02` | px/ms. Flicks slower than this just stop with no momentum coast (Once again, there's probably no need to adjust this unless you have a super high DPI monitor) |
+| `flickWindowMs` | `50` | Time window used to measure release velocity. Shorter time = snappier and more responsive to a late flick; longer time = steadier |
+| `useCoalesced` | `true` | Use high-frequency sub-frame pointer samples (`getCoalescedEvents`) for a cleaner velocity estimate on high-Hz mice. Set `false` if it misbehaves. I have no idea how this |
 | `onlyInScrollables` | `true` | Restrict dragging to `.monaco-scrollable-element` panes |
 
 ## How it works
