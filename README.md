@@ -94,7 +94,7 @@ All options to modify this addon live in the `CONFIG` block at the top of the sc
 | `momentumMultiplier` | `900` | Glide length: ms of coast per unit of flick speed. Higher number = longer coast |
 | `minMomentumSpeed` | `0.02` | px/ms. Flicks slower than this just stop with no momentum coast (Once again, there's probably no need to adjust this unless you have a super high DPI monitor) |
 | `flickWindowMs` | `50` | Time window used to measure release velocity. Shorter time = snappier and more responsive to a late flick; longer time = steadier |
-| `useCoalesced` | `true` | Use high-frequency sub-frame pointer samples (`getCoalescedEvents`) for a cleaner velocity estimate on high-Hz mice. Set `false` if it misbehaves. I have no idea how this |
+| `useCoalesced` | `true` | Enabling this makes the addon work better with high-Hz mice. |
 | `onlyInScrollables` | `true` | Restrict dragging to `.monaco-scrollable-element` panes |
 
 ## How it works
