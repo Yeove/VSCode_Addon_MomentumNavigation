@@ -36,7 +36,8 @@ This has consequences you should understand before installing:
 
 - It works by patching VSCode's core files, which is **unsupported by Microsoft**
 - VSCode will show a **"Your Code installation is corrupt"** warning after you
-  enable it. This is expected, dismissable, and does not mean anything is broken.
+  enable it.
+  <br>This is expected, dismissable, and does not mean anything is broken.
 - You must **re-enable Custom CSS and JS Loader after every VSCode update**, because updates restore
   the patched files
 
